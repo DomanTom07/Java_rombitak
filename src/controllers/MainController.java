@@ -21,11 +21,19 @@ public class MainController {
         this.mainWindow.buttonsPanel.calcButton.addActionListener(e -> {
             this.onClickCalcButton();
         });
+        this.mainWindow.buttonsPanel.emptyButton.addActionListener(e -> {
+            this.onClickEmptyButton();
+        });
         this.mainWindow.buttonsPanel.aboutButton.addActionListener(e -> {
             this.onClickAboutButton();
         });
     }
     private void onClickCalcButton() {
+        if (!ErrorController.checkForErrors(this.mainWindow, this.mainWindow.sidePanel, this.mainWindow.anglePanel)) {
+            this.calcResult();
+        }
+    }
+    public void calcResult() {
         double side = Double.parseDouble(this.mainWindow.sidePanel.ioField.getText());
         double angle = Double.parseDouble(this.mainWindow.anglePanel.ioField.getText());
         Double perimeter = CalcController.calcPerimeter(side);
@@ -38,8 +46,14 @@ public class MainController {
         this.mainWindow.areaPanel.ioField.setText(area.toString());
         this.mainWindow.areaPanel.ioField.setEditable(false);
     }
+    private void onClickEmptyButton() {
+        this.mainWindow.sidePanel.ioField.setText("");
+        this.mainWindow.anglePanel.ioField.setText("");
+        this.mainWindow.perimeterPanel.ioField.setText("");
+        this.mainWindow.areaPanel.ioField.setText("");
+    }
     private void onClickAboutButton() {
-        String about = "Program: Rombitak\nVerzió: 1.0\nKészítette: Tamás Domán,\nSzoft II N,\n2022-12-17";
+        String about = "Program: Rombitak\nVerzió: 1.1\nKészítette: Tamás Domán,\nSzoft II N,\n2022-12-17";
         JOptionPane.showMessageDialog(this.mainWindow.getContentPane(), about);
     }
 }

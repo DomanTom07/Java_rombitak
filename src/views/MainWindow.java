@@ -51,7 +51,7 @@ public class MainWindow extends JFrame {
     private void initWindow() {
         this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.PAGE_AXIS));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.pack();
+        this.setSize(350, 200);
         this.setTitle("Rombitak");
         this.setVisible(true);
     }
